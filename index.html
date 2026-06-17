@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind custom config -->
+  <!-- Tailwind Conf Customização -->
   <script>
     tailwind.config = {
       theme: {
@@ -55,7 +55,7 @@
   <!-- ═══════════════════════════════ LAYOUT WRAPPER ══════════════════════════ -->
   <div class="flex min-h-screen">
 
-    <!-- ─── SIDEBAR (hidden on mobile) ────────────────────────────────────────── -->
+    <!-- ─── BARRA LATERAL (Oculto no celular) ────────────────────────────────────────── -->
     <aside class="sidebar hidden md:flex flex-col w-60 bg-navyMid border-r border-navyLight shrink-0">
 
       <!-- Logo -->
@@ -89,7 +89,7 @@
           <span class="text-sm font-medium">Transações</span>
           <span class="text-xs text-textMuted ml-auto">Histórico</span>
         </a>
-        <!-- Active: Segurança -->
+        <!-- ATIVAR: Segurança -->
         <a href="#" class="nav-link nav-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-white">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7z"/></svg>
           <span class="text-sm font-medium">Segurança</span>
@@ -102,7 +102,7 @@
         </a>
       </nav>
 
-      <!-- User footer -->
+      <!-- Rodapé do Usuário -->
       <div class="flex items-center gap-3 px-4 py-4 border-t border-navyLight">
         <div class="avatar w-9 h-9 rounded-full bg-teal flex items-center justify-center text-navy font-bold text-sm shrink-0">JS</div>
         <div class="overflow-hidden">
@@ -112,10 +112,10 @@
       </div>
     </aside>
 
-    <!-- ─── MAIN CONTENT ──────────────────────────────────────────────────────── -->
+    <!-- ─── CONTEUDO PRINCIPAL ──────────────────────────────────────────────────────── -->
     <div class="flex-1 flex flex-col min-w-0">
 
-      <!-- Top bar (mobile) -->
+      <!-- BARRA SUPERIOR (mobile) -->
       <header class="md:hidden flex items-center justify-between px-4 py-3 bg-navyMid border-b border-navyLight">
         <div class="flex items-center gap-2">
           <div class="logo-icon w-8 h-8 rounded-md flex items-center justify-center">
@@ -131,7 +131,7 @@
         </div>
       </header>
 
-      <!-- Page header -->
+      <!-- CABEÇALHO -->
       <div class="flex items-center justify-between px-5 md:px-8 py-5 border-b border-navyLight">
         <div>
           <h1 class="font-display font-bold text-white text-xl md:text-2xl">Alertas de Segurança</h1>
@@ -143,14 +143,14 @@
         </div>
       </div>
 
-      <!-- Content area -->
+      <!-- Area de Conteudo -->
       <main class="flex-1 px-4 md:px-8 py-6 overflow-y-auto">
         <div class="flex flex-col lg:flex-row gap-6 max-w-5xl mx-auto">
 
-          <!-- ── ALERT CARD ─────────────────────────────────────────────────── -->
+          <!-- ── CARD ALERTA ─────────────────────────────────────────────────── -->
           <div class="flex-1">
 
-            <!-- Alert banner -->
+            <!-- Banner de Alerta -->
             <div class="alert-banner rounded-t-xl px-5 py-4 flex items-center gap-3">
               <div class="alert-icon-pulse w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
@@ -163,17 +163,17 @@
               </div>
             </div>
 
-            <!-- Transaction detail card -->
+            <!-- Detalhe de Transição no Card -->
             <div class="alert-card rounded-b-xl p-5 md:p-7 shadow-card">
 
-              <!-- Transaction info -->
+              <!-- Infor. Transição -->
               <div class="transaction-info rounded-xl p-5 mb-6 text-center">
                 <p class="text-alertRed font-display font-bold text-3xl md:text-4xl mb-1">R$ 1.890,00</p>
                 <p class="text-textBody text-base font-semibold mb-3">Compra em: <span class="text-white">SHOP ONLINE XXX</span></p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-textMuted">
                   <span class="flex items-center gap-1.5">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    12/07/2024 às 11:47
+                    12/06/2026 às 11:47
                   </span>
                   <span class="hidden sm:block text-navyLight">•</span>
                   <span class="flex items-center gap-1.5">
@@ -181,14 +181,14 @@
                     Este site não é reconhecido
                   </span>
                 </div>
-                <!-- Warning tag -->
+                <!-- Tag de Perigo -->
                 <div class="inline-flex items-center gap-2 mt-4 bg-alertRed/15 border border-alertRed/40 rounded-full px-4 py-1.5 text-alertRed text-sm font-semibold">
                   <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
                   Valor 15× acima da sua média mensal nesta categoria
                 </div>
               </div>
 
-              <!-- Question -->
+              <!-- Pergunta -->
               <p class="text-center text-white font-display font-bold text-xl md:text-2xl mb-6">Você fez essa compra agora?</p>
 
               <!-- Botões de CTA -->
@@ -211,8 +211,8 @@
               <!-- Recado de Notificação -->
               <div class="timer-notice flex items-center justify-center gap-2 text-sm text-textMuted text-center">
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Seu contato de confiança será notificado se você não responder em
-                <span class="countdown text-amber font-bold font-display" id="countdown">3:00</span>
+                Seu contato de confiança será notificado se você não responder em até
+                <span class="countdown text-amber font-bold font-display" id="countdown">3 minutos</span>
               </div>
             </div>
           </div>
@@ -220,7 +220,7 @@
           <!-- ── Painel Lateral ────────────────────────────────────────────────── -->
           <div class="w-full lg:w-72 space-y-5 shrink-0">
 
-            <!-- What happens if I block -->
+            <!-- Painel de Aviso -->
             <div class="info-panel rounded-xl p-5">
               <h3 class="text-teal font-display font-bold text-sm uppercase tracking-widest mb-4">O Que Acontece se eu Bloquear?</h3>
               <div class="space-y-3">
@@ -243,7 +243,7 @@
               </div>
             </div>
 
-            <!-- Guardian contacts -->
+            <!-- Contato do Guardião -->
             <div class="info-panel rounded-xl p-5">
               <h3 class="text-teal font-display font-bold text-sm uppercase tracking-widest mb-4">Anjos da Guarda</h3>
               <div class="space-y-3">
@@ -266,7 +266,7 @@
               </div>
             </div>
 
-            <!-- Security tip -->
+            <!-- Dica de Segurança -->
             <div class="tip-panel rounded-xl p-5 border border-amber/30">
               <div class="flex items-start gap-2 mb-2">
                 <svg width="16" height="16" fill="#f0a500" viewBox="0 0 24 24" class="shrink-0 mt-0.5"><path d="M12 2a7 7 0 1 0 0 14A7 7 0 0 0 12 2zm0 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-6a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1zm-1 16h2v2h-2z"/></svg>
@@ -281,16 +281,5 @@
     </div>
   </div>
 
-  <!-- ─── MODAL FEEDBACK ──────────────────────────────────────────────────────── -->
-  <div id="modal" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-    <div class="modal-box rounded-2xl p-8 max-w-sm w-full text-center shadow-card">
-      <div id="modal-icon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"></div>
-      <h2 id="modal-title" class="font-display font-bold text-white text-2xl mb-3"></h2>
-      <p id="modal-text" class="text-textMuted text-sm mb-6 leading-relaxed"></p>
-      <button onclick="closeModal()" class="btn-modal w-full py-3 rounded-xl font-semibold text-navy">Entendido</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+ </body>
 </html>
