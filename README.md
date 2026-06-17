@@ -32,10 +32,10 @@ A tela apresenta ao usuário uma transação fora do padrão identificada pelo s
  Confirma e libera a compra 
 |
  ⏱️ Contagem de 3 min 
-| Notifica Anjo da Guarda automaticamente se não houver resposta 
-|
-| 📋 Painel lateral 
-| Passos do bloqueio e contatos de confiança cadastrados 
+ Notifica Anjo da Guarda automaticamente se não houver resposta 
+
+- 📋 Painel lateral 
+ Passos do bloqueio e contatos de confiança cadastrados 
 ---
 
 ## 🗂️ Estrutura de Arquivos
