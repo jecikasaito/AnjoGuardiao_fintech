@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnjoGuardião — Alerta de Segurança</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Overlay mobile -->
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <!-- Drawer mobile -->
+  <aside class="sidebar-drawer" id="drawer">
+    <div class="drawer-brand">
+      <div class="drawer-logo">A</div>
+      <div class="drawer-name">AnjoGuardião</div>
+    </div>
+    <a href="#" class="drawer-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      Painel
+    </a>
+    <a href="#" class="drawer-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+      Cadastro
+    </a>
+    <a href="#" class="drawer-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+      Transações
+    </a>
+    <a href="#" class="drawer-item active">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+      </svg>
+      Segurança
+    </a>
+    <a href="#" class="drawer-item">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M17 20h5v-2a4 4 0 00-5.2-3.8M9 20H4v-2a4 4 0 015.2-3.8M15 7a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+      Contatos
+    </a>
+  </aside>
+
+  <div class="shell">
+
+    <!-- ===== SIDEBAR icon rail ===== -->
+    <aside class="sidebar">
+      <div class="sidebar-logo"><span>A</span></div>
+      <nav class="nav-icons">
+        <div class="nav-icon" title="Painel">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </div>
+        <div class="nav-icon" title="Cadastro">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        </div>
+        <div class="nav-icon" title="Transações">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div class="nav-icon active" title="Segurança — Alerta ativo">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+          </svg>
+          <div class="nav-dot"></div>
+        </div>
+        <div class="nav-icon" title="Contatos">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17 20h5v-2a4 4 0 00-5.2-3.8M9 20H4v-2a4 4 0 015.2-3.8M15 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </div>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="nav-icon" title="Configurações">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+        <div class="avatar-sm" title="Jecika Saito">JS</div>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <div class="main">
+
+      <!-- ALERT BANNER — domina o topo -->
+      <header class="alert-banner" role="alert" aria-live="assertive">
+        <div class="banner-left">
+          <button class="hamburger" onclick="openSidebar()" aria-label="Abrir menu">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <div class="banner-icon" aria-hidden="true">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+            </svg>
+          </div>
+          <div class="banner-text">
+            <strong>Alerta de Segurança — Ação necessária</strong>
+            <span>Detectamos uma compra fora do seu padrão. Verifique agora.</span>
+          </div>
+        </div>
+        <div class="banner-right">
+          <div class="icon-btn" title="Notificações" aria-label="Notificações">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <div class="dot"></div>
+          </div>
+          <div class="icon-btn" title="Perfil">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- content -->
+      <div class="content">
+
+        <!-- ===== CENTER PANE ===== -->
+        <main class="center-pane">
+
+          <!-- amount hero -->
+          <div class="amount-label">Valor detectado</div>
+          <div class="amount" aria-label="R$ 1890 reais">
+            R$&nbsp;1.890<span class="amount-cents">,00</span>
+          </div>
+
+          <div class="merchant-row">
+            <div class="merchant-pill">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01" />
+              </svg>
+              SHOP ONLINE XXX
+            </div>
+            <span class="merchant-time">· 12/07/2024 às 11:47</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- meta grid — glassmorphism -->
+          <div class="meta-grid" role="list" aria-label="Detalhes da transação">
+            <div class="meta-cell" role="listitem">
+              <div class="meta-cell-label">Tipo de operação</div>
+              <div class="meta-cell-value ok">Compra online</div>
+            </div>
+            <div class="meta-cell" role="listitem">
+              <div class="meta-cell-label">Site reconhecido?</div>
+              <div class="meta-cell-value warn" aria-label="Não reconhecido">Não ⚠</div>
+            </div>
+            <div class="meta-cell" role="listitem">
+              <div class="meta-cell-label">IP de origem</div>
+              <div class="meta-cell-value warn">Desconhecido</div>
+            </div>
+            <div class="meta-cell" role="listitem">
+              <div class="meta-cell-label">Desvio do seu padrão</div>
+              <div class="meta-cell-value warn">15× acima da média</div>
+            </div>
+          </div>
+
+          <!-- question — tipografia ampliada, linguagem simples -->
+          <p class="question">Você reconhece esta compra?</p>
+
+          <!-- CTAs gigantes e acessíveis -->
+          <div class="cta-group" role="group" aria-label="Sua resposta">
+            <button class="btn btn-block" onclick="handleBlock()"
+              aria-label="Não fui eu — bloquear operação imediatamente">
+              <span class="btn-main">Não fui eu</span>
+              <span class="btn-desc">Bloquear imediatamente</span>
+            </button>
+            <button class="btn btn-confirm" onclick="handleConfirm()"
+              aria-label="Sim, fui eu — confirmar e liberar a compra">
+              <span class="btn-main">Sim, fui eu</span>
+              <span class="btn-desc">Confirmar e liberar</span>
+            </button>
+          </div>
+
+          <!-- timer -->
+          <div class="timer-row" role="timer" aria-live="polite" aria-label="Tempo restante">
+            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+              style="color:var(--text-3);flex-shrink:0" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="timer-bg">
+              <div class="timer-fill" id="timerBar"></div>
+            </div>
+            <span class="timer-count" id="timerLabel">3:00</span>
+          </div>
+          <p class="timer-note">Seu Anjo da Guarda será avisado automaticamente se você não responder.</p>
+
+        </main>
+
+        <!-- ===== RIGHT PANE ===== -->
+        <aside class="right-pane">
+
+          <!-- consequences -->
+          <section aria-labelledby="block-heading">
+            <div class="rp-label" id="block-heading">O que acontece se eu bloquear</div>
+            <div class="cq-list">
+              <div class="cq-item">
+                <div class="cq-track">
+                  <div class="cq-num n1">1</div>
+                  <div class="cq-line"></div>
+                </div>
+                <div class="cq-text"><strong>Compra cancelada</strong> na hora</div>
+              </div>
+              <div class="cq-item">
+                <div class="cq-track">
+                  <div class="cq-num n2">2</div>
+                  <div class="cq-line"></div>
+                </div>
+                <div class="cq-text">Banco notificado sobre a tentativa</div>
+              </div>
+              <div class="cq-item">
+                <div class="cq-track">
+                  <div class="cq-num n3">3</div>
+                  <div class="cq-line"></div>
+                </div>
+                <div class="cq-text"><strong>SMS enviado</strong> ao seu Anjo da Guarda</div>
+              </div>
+              <div class="cq-item">
+                <div class="cq-track">
+                  <div class="cq-num n4">4</div>
+                  <div class="cq-line"></div>
+                </div>
+                <div class="cq-text">Conta protegida e incidente registrado</div>
+              </div>
+            </div>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- guardian -->
+          <section aria-labelledby="guardian-heading">
+            <div class="rp-label" id="guardian-heading">Seu Anjo da Guarda</div>
+            <div class="guardian-card">
+              <div class="guardian-inner">
+                <div class="g-avatar" aria-hidden="true">AS</div>
+                <div>
+                  <div class="g-name">Ana Santos</div>
+                  <div class="g-rel">Filha</div>
+                  <div class="g-phone">(65) 99988-1234</div>
+                </div>
+              </div>
+              <div class="g-tag">
+                <div class="g-tag-dot"></div>
+                Verificado · pronto para alertar
+              </div>
+            </div>
+          </section>
+
+          <div class="divider"></div>
+
+          <!-- tip -->
+          <section>
+            <div class="rp-label">Lembre-se</div>
+            <div class="tip-card">
+              Bancos e o AnjoGuardião <strong>nunca pedem senha</strong> por mensagem ou ligação.
+              Em caso de dúvida, escolha sempre <strong style="color:var(--red)">"Não fui eu"</strong>.
+            </div>
+          </section>
+
+        </aside>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /shell -->
+
+  <!-- MODAL -->
+  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <span class="modal-icon" id="modalIcon" aria-hidden="true"></span>
+      <div class="modal-title" id="modalTitle"></div>
+      <p class="modal-msg" id="modalMsg"></p>
+      <button class="modal-btn" onclick="closeModal()">Entendido</button>
+    </div>
+  </div>
+
+  <script>
+    /* Sidebar mobile */
+    function openSidebar() {
+      document.getElementById('drawer').classList.add('open');
+      document.getElementById('overlay').classList.add('open');
+    }
+    function closeSidebar() {
+      document.getElementById('drawer').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+    }
+
+    /* Countdown */
+    const TOTAL = 180;
+    let elapsed = 0;
+    const labelEl = document.getElementById('timerLabel');
+    const barEl = document.getElementById('timerBar');
+
+    const ticker = setInterval(() => {
+      elapsed++;
+      const rem = TOTAL - elapsed;
+      if (rem <= 0) {
+        clearInterval(ticker);
+        labelEl.textContent = '0:00';
+        barEl.style.width = '0%';
+        showModal('⏰', 'Tempo esgotado', 'Ana Santos foi notificada automaticamente sobre este alerta.');
+        return;
+      }
+      const m = Math.floor(rem / 60);
+      const s = rem % 60;
+      labelEl.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      barEl.style.width = ((rem / TOTAL) * 100) + '%';
+    }, 1000);
+
+    /* CTA handlers */
+    function handleBlock() {
+      clearInterval(ticker);
+      showModal('🛡️', 'Operação bloqueada!', 'A compra foi cancelada. O banco foi notificado e Ana Santos recebeu um SMS.');
+    }
+    function handleConfirm() {
+      clearInterval(ticker);
+      showModal('✅', 'Compra confirmada', 'A transação foi liberada e o alerta foi encerrado com segurança.');
+    }
+
+    /* Modal */
+    function showModal(icon, title, msg) {
+      document.getElementById('modalIcon').textContent = icon;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalMsg').textContent = msg;
+      document.getElementById('modal').classList.add('open');
+    }
+    function closeModal() {
+      document.getElementById('modal').classList.remove('open');
+    }
+
+    /* Fechar modal com Esc */
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+
+</body>
+
+</html>
