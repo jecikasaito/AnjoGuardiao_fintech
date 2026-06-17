@@ -19,19 +19,19 @@ Este repositório contém a implementação da **Tela de Alertas de Segurança (
 A tela apresenta ao usuário uma transação fora do padrão identificada pelo sistema, permitindo que ele tome uma ação imediata:
  Elementos:
  Descrição 
- 🔴 Banner de alerta 
+- 🔴 Banner de alerta 
  Destaque visual imediato de risco com ícone animado 
-|
- 💳 Card de transação 
+
+- 💳 Card de transação 
  Valor, estabelecimento, horário e contexto da compra suspeita 
-|
- ❌ Botão "Não fui eu" 
+
+- ❌ Botão "Não fui eu" 
  Bloqueia a operação imediatamente 
-|
- ✅ Botão "Sim, fui eu" 
+
+- ✅ Botão "Sim, fui eu" 
  Confirma e libera a compra 
-|
- ⏱️ Contagem de 3 min 
+ 
+- ⏱️ Contagem de 3 min 
  Notifica Anjo da Guarda automaticamente se não houver resposta 
 
 - 📋 Painel lateral 
