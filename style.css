@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════
-   AnjoGuardião — style.css
-   Dark navy + teal + red alert
+   AnjoGuardião
+   Dark navy + teal + red alerta
    ══════════════════════════════════════════════ */
 
 /* ─── Reset & Base ───────────────────────────── */
@@ -13,12 +13,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Scrollbar ──────────────────────────────── */
+/* ─── Barra de Rolagem ──────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #102035; }
 ::-webkit-scrollbar-thumb { background: #1a9e8f; border-radius: 3px; }
 
-/* ─── Sidebar ────────────────────────────────── */
+/* ─── Barra Lateral ────────────────────────────────── */
 .sidebar {
   background: #102035;
 }
@@ -57,13 +57,13 @@ body {
   50%       { box-shadow: 0 0 0 5px rgba(230,60,60,0); }
 }
 
-/* ─── Banner Alerta───────────────────────────── */
+/* ─── Banner de Alerta───────────────────────────── */
 .alert-banner {
   background: linear-gradient(90deg, #c0392b 0%, #e63c3c 60%, #e74c3c 100%);
   box-shadow: 0 4px 24px rgba(230,60,60,0.40);
 }
 
-/* Pulse icon inside banner */
+/* Pulse icon dentro do banner */
 .alert-icon-pulse {
   animation: icon-pulse 1.8s ease-in-out infinite;
 }
@@ -72,7 +72,7 @@ body {
   50%       { transform: scale(1.12); opacity: 0.85; }
 }
 
-/* ─── Card Alerta ─────────────────────────────── */
+/* ─── Card de Alerta ─────────────────────────────── */
 .alert-card {
   background: #102035;
   border: 1px solid rgba(230, 60, 60, 0.25);
@@ -146,35 +146,6 @@ body {
   font-family: 'Space Grotesk', sans-serif;
   box-shadow: 0 0 8px rgba(30, 207, 188, 0.3);
 }
-
-/* ─── Modal ──────────────────────────────────── */
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-.modal-overlay.hidden { display: none; }
-
-.modal-box {
-  background: #102035;
-  border: 1px solid #163047;
-}
-
-.modal-box.blocked {
-  border-color: rgba(230,60,60,0.35);
-}
-.modal-box.confirmed {
-  border-color: rgba(29,184,122,0.35);
-}
-
-.btn-modal {
-  background: linear-gradient(135deg, #147a6e 0%, #1ecfbc 100%);
-  color: #0d1b2a;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  transition: opacity 0.15s;
-}
-.btn-modal:hover { opacity: 0.9; }
 
 /* ─── Responsive tweaks ──────────────────────── */
 @media (max-width: 640px) {
