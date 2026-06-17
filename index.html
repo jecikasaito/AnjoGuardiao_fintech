@@ -1,371 +1,298 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnjoGuardião — Alerta de Segurança</title>
+  <title>AnjoGuardião — Alertas de Segurança</title>
+
+  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind custom config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:    '#0d1b2a',
+            navyMid: '#102035',
+            navyLight: '#163047',
+            teal:    '#1a9e8f',
+            tealDark:'#147a6e',
+            tealGlow:'#1ecfbc',
+            alertRed:'#e63c3c',
+            alertRedDark:'#b52d2d',
+            safeGreen:'#1db87a',
+            safeGreenDark:'#178c5c',
+            amber:   '#f0a500',
+            textMuted:'#8ba3bc',
+            textBody: '#c2d6e8',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          boxShadow: {
+            'teal-glow': '0 0 20px rgba(30, 207, 188, 0.25)',
+            'red-glow':  '0 0 30px rgba(230, 60, 60, 0.35)',
+            'card':      '0 4px 24px rgba(0,0,0,0.45)',
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
+<body class="bg-navy text-textBody font-sans min-h-screen flex flex-col">
 
-<body>
+  <!-- ═══════════════════════════════ LAYOUT WRAPPER ══════════════════════════ -->
+  <div class="flex min-h-screen">
 
-  <!-- Overlay mobile -->
-  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    <!-- ─── SIDEBAR (hidden on mobile) ────────────────────────────────────────── -->
+    <aside class="sidebar hidden md:flex flex-col w-60 bg-navyMid border-r border-navyLight shrink-0">
 
-  <!-- Drawer mobile -->
-  <aside class="sidebar-drawer" id="drawer">
-    <div class="drawer-brand">
-      <div class="drawer-logo">A</div>
-      <div class="drawer-name">AnjoGuardião</div>
-    </div>
-    <a href="#" class="drawer-item">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-      Painel
-    </a>
-    <a href="#" class="drawer-item">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-      </svg>
-      Cadastro
-    </a>
-    <a href="#" class="drawer-item">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-      Transações
-    </a>
-    <a href="#" class="drawer-item active">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-      </svg>
-      Segurança
-    </a>
-    <a href="#" class="drawer-item">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M17 20h5v-2a4 4 0 00-5.2-3.8M9 20H4v-2a4 4 0 015.2-3.8M15 7a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>
-      Contatos
-    </a>
-  </aside>
-
-  <div class="shell">
-
-    <!-- ===== SIDEBAR icon rail ===== -->
-    <aside class="sidebar">
-      <div class="sidebar-logo"><span>A</span></div>
-      <nav class="nav-icons">
-        <div class="nav-icon" title="Painel">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      <!-- Logo -->
+      <div class="flex items-center gap-3 px-5 py-5 border-b border-navyLight">
+        <div class="logo-icon w-10 h-10 rounded-lg flex items-center justify-center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1ecfbc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7z"/>
+            <path d="M9 12l2 2 4-4"/>
           </svg>
         </div>
-        <div class="nav-icon" title="Cadastro">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-          </svg>
+        <div>
+          <p class="font-display font-700 text-white text-sm leading-tight">AnjoGuardião</p>
+          <p class="text-teal text-xs">Proteção Financeira</p>
         </div>
-        <div class="nav-icon" title="Transações">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </div>
-        <div class="nav-icon active" title="Segurança — Alerta ativo">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-          </svg>
-          <div class="nav-dot"></div>
-        </div>
-        <div class="nav-icon" title="Contatos">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M17 20h5v-2a4 4 0 00-5.2-3.8M9 20H4v-2a4 4 0 015.2-3.8M15 7a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-        </div>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="flex-1 px-3 py-4 space-y-1">
+        <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-textMuted hover:text-white">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <span class="text-sm font-medium">Painel</span>
+          <span class="text-xs text-textMuted ml-auto">Início</span>
+        </a>
+        <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-textMuted hover:text-white">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="text-sm font-medium">Cadastro</span>
+          <span class="text-xs text-textMuted ml-auto">Usuário</span>
+        </a>
+        <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-textMuted hover:text-white">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span class="text-sm font-medium">Transações</span>
+          <span class="text-xs text-textMuted ml-auto">Histórico</span>
+        </a>
+        <!-- Active: Segurança -->
+        <a href="#" class="nav-link nav-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-white">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7z"/></svg>
+          <span class="text-sm font-medium">Segurança</span>
+          <span class="text-xs text-teal ml-auto">Alertas</span>
+        </a>
+        <a href="#" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-textMuted hover:text-white">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="text-sm font-medium">Contatos</span>
+          <span class="text-xs text-textMuted ml-auto">Confiança</span>
+        </a>
       </nav>
-      <div class="sidebar-bottom">
-        <div class="nav-icon" title="Configurações">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+
+      <!-- User footer -->
+      <div class="flex items-center gap-3 px-4 py-4 border-t border-navyLight">
+        <div class="avatar w-9 h-9 rounded-full bg-teal flex items-center justify-center text-navy font-bold text-sm shrink-0">JS</div>
+        <div class="overflow-hidden">
+          <p class="text-white text-sm font-semibold truncate">Jecika Saito</p>
+          <p class="text-textMuted text-xs">Administradora</p>
         </div>
-        <div class="avatar-sm" title="Jecika Saito">JS</div>
       </div>
     </aside>
 
-    <!-- ===== MAIN ===== -->
-    <div class="main">
+    <!-- ─── MAIN CONTENT ──────────────────────────────────────────────────────── -->
+    <div class="flex-1 flex flex-col min-w-0">
 
-      <!-- ALERT BANNER — domina o topo -->
-      <header class="alert-banner" role="alert" aria-live="assertive">
-        <div class="banner-left">
-          <button class="hamburger" onclick="openSidebar()" aria-label="Abrir menu">
-            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-          <div class="banner-icon" aria-hidden="true">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+      <!-- Top bar (mobile) -->
+      <header class="md:hidden flex items-center justify-between px-4 py-3 bg-navyMid border-b border-navyLight">
+        <div class="flex items-center gap-2">
+          <div class="logo-icon w-8 h-8 rounded-md flex items-center justify-center">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1ecfbc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7z"/>
             </svg>
           </div>
-          <div class="banner-text">
-            <strong>Alerta de Segurança — Ação necessária</strong>
-            <span>Detectamos uma compra fora do seu padrão. Verifique agora.</span>
-          </div>
+          <span class="font-display font-bold text-white text-sm">AnjoGuardião</span>
         </div>
-        <div class="banner-right">
-          <div class="icon-btn" title="Notificações" aria-label="Notificações">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-            <div class="dot"></div>
-          </div>
-          <div class="icon-btn" title="Perfil">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-          </div>
+        <div class="flex items-center gap-2">
+          <span class="badge-alert-count w-5 h-5 rounded-full bg-alertRed text-white text-xs flex items-center justify-center font-bold">3</span>
+          <div class="avatar w-8 h-8 rounded-full bg-teal flex items-center justify-center text-navy font-bold text-xs">JS</div>
         </div>
       </header>
 
-      <!-- content -->
-      <div class="content">
+      <!-- Page header -->
+      <div class="flex items-center justify-between px-5 md:px-8 py-5 border-b border-navyLight">
+        <div>
+          <h1 class="font-display font-bold text-white text-xl md:text-2xl">Alertas de Segurança</h1>
+          <p class="text-textMuted text-sm mt-0.5">Validação de transação suspeita</p>
+        </div>
+        <div class="hidden md:flex items-center gap-3">
+          <span class="badge-alert-count w-6 h-6 rounded-full bg-alertRed text-white text-xs flex items-center justify-center font-bold">3</span>
+          <div class="avatar w-9 h-9 rounded-full bg-teal flex items-center justify-center text-navy font-bold text-sm">JS</div>
+        </div>
+      </div>
 
-        <!-- ===== CENTER PANE ===== -->
-        <main class="center-pane">
+      <!-- Content area -->
+      <main class="flex-1 px-4 md:px-8 py-6 overflow-y-auto">
+        <div class="flex flex-col lg:flex-row gap-6 max-w-5xl mx-auto">
 
-          <!-- amount hero -->
-          <div class="amount-label">Valor detectado</div>
-          <div class="amount" aria-label="R$ 1890 reais">
-            R$&nbsp;1.890<span class="amount-cents">,00</span>
-          </div>
+          <!-- ── ALERT CARD ─────────────────────────────────────────────────── -->
+          <div class="flex-1">
 
-          <div class="merchant-row">
-            <div class="merchant-pill">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01" />
-              </svg>
-              SHOP ONLINE XXX
-            </div>
-            <span class="merchant-time">· 12/07/2024 às 11:47</span>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- meta grid — glassmorphism -->
-          <div class="meta-grid" role="list" aria-label="Detalhes da transação">
-            <div class="meta-cell" role="listitem">
-              <div class="meta-cell-label">Tipo de operação</div>
-              <div class="meta-cell-value ok">Compra online</div>
-            </div>
-            <div class="meta-cell" role="listitem">
-              <div class="meta-cell-label">Site reconhecido?</div>
-              <div class="meta-cell-value warn" aria-label="Não reconhecido">Não ⚠</div>
-            </div>
-            <div class="meta-cell" role="listitem">
-              <div class="meta-cell-label">IP de origem</div>
-              <div class="meta-cell-value warn">Desconhecido</div>
-            </div>
-            <div class="meta-cell" role="listitem">
-              <div class="meta-cell-label">Desvio do seu padrão</div>
-              <div class="meta-cell-value warn">15× acima da média</div>
-            </div>
-          </div>
-
-          <!-- question — tipografia ampliada, linguagem simples -->
-          <p class="question">Você reconhece esta compra?</p>
-
-          <!-- CTAs gigantes e acessíveis -->
-          <div class="cta-group" role="group" aria-label="Sua resposta">
-            <button class="btn btn-block" onclick="handleBlock()"
-              aria-label="Não fui eu — bloquear operação imediatamente">
-              <span class="btn-main">Não fui eu</span>
-              <span class="btn-desc">Bloquear imediatamente</span>
-            </button>
-            <button class="btn btn-confirm" onclick="handleConfirm()"
-              aria-label="Sim, fui eu — confirmar e liberar a compra">
-              <span class="btn-main">Sim, fui eu</span>
-              <span class="btn-desc">Confirmar e liberar</span>
-            </button>
-          </div>
-
-          <!-- timer -->
-          <div class="timer-row" role="timer" aria-live="polite" aria-label="Tempo restante">
-            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-              style="color:var(--text-3);flex-shrink:0" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div class="timer-bg">
-              <div class="timer-fill" id="timerBar"></div>
-            </div>
-            <span class="timer-count" id="timerLabel">3:00</span>
-          </div>
-          <p class="timer-note">Seu Anjo da Guarda será avisado automaticamente se você não responder.</p>
-
-        </main>
-
-        <!-- ===== RIGHT PANE ===== -->
-        <aside class="right-pane">
-
-          <!-- consequences -->
-          <section aria-labelledby="block-heading">
-            <div class="rp-label" id="block-heading">O que acontece se eu bloquear</div>
-            <div class="cq-list">
-              <div class="cq-item">
-                <div class="cq-track">
-                  <div class="cq-num n1">1</div>
-                  <div class="cq-line"></div>
-                </div>
-                <div class="cq-text"><strong>Compra cancelada</strong> na hora</div>
+            <!-- Alert banner -->
+            <div class="alert-banner rounded-t-xl px-5 py-4 flex items-center gap-3">
+              <div class="alert-icon-pulse w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
               </div>
-              <div class="cq-item">
-                <div class="cq-track">
-                  <div class="cq-num n2">2</div>
-                  <div class="cq-line"></div>
-                </div>
-                <div class="cq-text">Banco notificado sobre a tentativa</div>
-              </div>
-              <div class="cq-item">
-                <div class="cq-track">
-                  <div class="cq-num n3">3</div>
-                  <div class="cq-line"></div>
-                </div>
-                <div class="cq-text"><strong>SMS enviado</strong> ao seu Anjo da Guarda</div>
-              </div>
-              <div class="cq-item">
-                <div class="cq-track">
-                  <div class="cq-num n4">4</div>
-                  <div class="cq-line"></div>
-                </div>
-                <div class="cq-text">Conta protegida e incidente registrado</div>
+              <div>
+                <p class="text-white font-display font-bold text-base md:text-lg tracking-wide uppercase">⚠ Alerta de Segurança</p>
+                <p class="text-white/80 text-sm">Identificamos uma transação fora do seu padrão habitual</p>
               </div>
             </div>
-          </section>
 
-          <div class="divider"></div>
+            <!-- Transaction detail card -->
+            <div class="alert-card rounded-b-xl p-5 md:p-7 shadow-card">
 
-          <!-- guardian -->
-          <section aria-labelledby="guardian-heading">
-            <div class="rp-label" id="guardian-heading">Seu Anjo da Guarda</div>
-            <div class="guardian-card">
-              <div class="guardian-inner">
-                <div class="g-avatar" aria-hidden="true">AS</div>
-                <div>
-                  <div class="g-name">Ana Santos</div>
-                  <div class="g-rel">Filha</div>
-                  <div class="g-phone">(65) 99988-1234</div>
+              <!-- Transaction info -->
+              <div class="transaction-info rounded-xl p-5 mb-6 text-center">
+                <p class="text-alertRed font-display font-bold text-3xl md:text-4xl mb-1">R$ 1.890,00</p>
+                <p class="text-textBody text-base font-semibold mb-3">Compra em: <span class="text-white">SHOP ONLINE XXX</span></p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-textMuted">
+                  <span class="flex items-center gap-1.5">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    12/07/2024 às 11:47
+                  </span>
+                  <span class="hidden sm:block text-navyLight">•</span>
+                  <span class="flex items-center gap-1.5">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    Este site não é reconhecido
+                  </span>
+                </div>
+                <!-- Warning tag -->
+                <div class="inline-flex items-center gap-2 mt-4 bg-alertRed/15 border border-alertRed/40 rounded-full px-4 py-1.5 text-alertRed text-sm font-semibold">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                  Valor 15× acima da sua média mensal nesta categoria
                 </div>
               </div>
-              <div class="g-tag">
-                <div class="g-tag-dot"></div>
-                Verificado · pronto para alertar
+
+              <!-- Question -->
+              <p class="text-center text-white font-display font-bold text-xl md:text-2xl mb-6">Você fez essa compra agora?</p>
+
+              <!-- CTA buttons -->
+              <div class="flex flex-col sm:flex-row gap-4 mb-5">
+                <button
+                  onclick="handleAction('nao')"
+                  class="btn-no flex-1 py-4 px-6 rounded-xl font-display font-bold text-lg text-white flex flex-col items-center gap-1 transition-all"
+                >
+                  <span>NÃO FUI EU</span>
+                  <span class="text-white/70 text-sm font-normal font-sans">Bloquear operação imediatamente</span>
+                </button>
+
+                <button
+                  onclick="handleAction('sim')"
+                  class="btn-yes flex-1 py-4 px-6 rounded-xl font-display font-bold text-lg text-navy flex flex-col items-center gap-1 transition-all"
+                >
+                  <span>SIM, FUI EU</span>
+                  <span class="text-navy/70 text-sm font-normal font-sans">Confirmar e liberar a compra</span>
+                </button>
+              </div>
+
+              <!-- Timer notice -->
+              <div class="timer-notice flex items-center justify-center gap-2 text-sm text-textMuted text-center">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Seu contato de confiança será notificado se você não responder em
+                <span class="countdown text-amber font-bold font-display" id="countdown">3:00</span>
               </div>
             </div>
-          </section>
+          </div>
 
-          <div class="divider"></div>
+          <!-- ── SIDEBAR PANEL ────────────────────────────────────────────────── -->
+          <div class="w-full lg:w-72 space-y-5 shrink-0">
 
-          <!-- tip -->
-          <section>
-            <div class="rp-label">Lembre-se</div>
-            <div class="tip-card">
-              Bancos e o AnjoGuardião <strong>nunca pedem senha</strong> por mensagem ou ligação.
-              Em caso de dúvida, escolha sempre <strong style="color:var(--red)">"Não fui eu"</strong>.
+            <!-- What happens if I block -->
+            <div class="info-panel rounded-xl p-5">
+              <h3 class="text-teal font-display font-bold text-sm uppercase tracking-widest mb-4">O Que Acontece se eu Bloquear?</h3>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                  <div class="step-badge bg-teal text-navy w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</div>
+                  <p class="text-textBody text-sm">Compra cancelada imediatamente</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="step-badge bg-teal text-navy w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</div>
+                  <p class="text-textBody text-sm">Banco notificado sobre a tentativa</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="step-badge bg-teal text-navy w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</div>
+                  <p class="text-textBody text-sm">Anjo da Guarda é avisado por SMS</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="step-badge bg-teal text-navy w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">4</div>
+                  <p class="text-textBody text-sm">Conta protegida e monitorada</p>
+                </div>
+              </div>
             </div>
-          </section>
 
-        </aside>
+            <!-- Guardian contacts -->
+            <div class="info-panel rounded-xl p-5">
+              <h3 class="text-teal font-display font-bold text-sm uppercase tracking-widest mb-4">Anjos da Guarda</h3>
+              <div class="space-y-3">
+                <div class="contact-row flex items-center gap-3 p-2.5 rounded-lg">
+                  <div class="w-8 h-8 rounded-full bg-teal/20 border border-teal/40 flex items-center justify-center text-xs font-bold text-teal shrink-0">AS</div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-white text-sm font-medium truncate">Ana Santos</p>
+                    <p class="text-textMuted text-xs">Filha · (65) 99988-1234</p>
+                  </div>
+                  <span class="text-xs text-safeGreen font-semibold">✓</span>
+                </div>
+                <div class="contact-row flex items-center gap-3 p-2.5 rounded-lg">
+                  <div class="w-8 h-8 rounded-full bg-teal/20 border border-teal/40 flex items-center justify-center text-xs font-bold text-teal shrink-0">CS</div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-white text-sm font-medium truncate">Carlos Santos</p>
+                    <p class="text-textMuted text-xs">Filho · (65) 99977-5678</p>
+                  </div>
+                  <span class="text-xs text-safeGreen font-semibold">✓</span>
+                </div>
+              </div>
+            </div>
 
-      </div><!-- /content -->
-    </div><!-- /main -->
-  </div><!-- /shell -->
+            <!-- Security tip -->
+            <div class="tip-panel rounded-xl p-5 border border-amber/30">
+              <div class="flex items-start gap-2 mb-2">
+                <svg width="16" height="16" fill="#f0a500" viewBox="0 0 24 24" class="shrink-0 mt-0.5"><path d="M12 2a7 7 0 1 0 0 14A7 7 0 0 0 12 2zm0 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm0-6a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1zm-1 16h2v2h-2z"/></svg>
+                <h3 class="text-amber font-display font-bold text-sm">Dica de Segurança</h3>
+              </div>
+              <p class="text-textMuted text-xs leading-relaxed">Nunca confirme compras em sites que você não reconhece. Em caso de dúvida, bloqueie e entre em contato com seu banco.</p>
+            </div>
 
-  <!-- MODAL -->
-  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-box">
-      <span class="modal-icon" id="modalIcon" aria-hidden="true"></span>
-      <div class="modal-title" id="modalTitle"></div>
-      <p class="modal-msg" id="modalMsg"></p>
-      <button class="modal-btn" onclick="closeModal()">Entendido</button>
+          </div>
+        </div>
+      </main>
     </div>
   </div>
 
-  <script>
-    /* Sidebar mobile */
-    function openSidebar() {
-      document.getElementById('drawer').classList.add('open');
-      document.getElementById('overlay').classList.add('open');
-    }
-    function closeSidebar() {
-      document.getElementById('drawer').classList.remove('open');
-      document.getElementById('overlay').classList.remove('open');
-    }
+  <!-- ─── MODAL FEEDBACK ──────────────────────────────────────────────────────── -->
+  <div id="modal" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="modal-box rounded-2xl p-8 max-w-sm w-full text-center shadow-card">
+      <div id="modal-icon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"></div>
+      <h2 id="modal-title" class="font-display font-bold text-white text-2xl mb-3"></h2>
+      <p id="modal-text" class="text-textMuted text-sm mb-6 leading-relaxed"></p>
+      <button onclick="closeModal()" class="btn-modal w-full py-3 rounded-xl font-semibold text-navy">Entendido</button>
+    </div>
+  </div>
 
-    /* Countdown */
-    const TOTAL = 180;
-    let elapsed = 0;
-    const labelEl = document.getElementById('timerLabel');
-    const barEl = document.getElementById('timerBar');
-
-    const ticker = setInterval(() => {
-      elapsed++;
-      const rem = TOTAL - elapsed;
-      if (rem <= 0) {
-        clearInterval(ticker);
-        labelEl.textContent = '0:00';
-        barEl.style.width = '0%';
-        showModal('⏰', 'Tempo esgotado', 'Ana Santos foi notificada automaticamente sobre este alerta.');
-        return;
-      }
-      const m = Math.floor(rem / 60);
-      const s = rem % 60;
-      labelEl.textContent = `${m}:${s.toString().padStart(2, '0')}`;
-      barEl.style.width = ((rem / TOTAL) * 100) + '%';
-    }, 1000);
-
-    /* CTA handlers */
-    function handleBlock() {
-      clearInterval(ticker);
-      showModal('🛡️', 'Operação bloqueada!', 'A compra foi cancelada. O banco foi notificado e Ana Santos recebeu um SMS.');
-    }
-    function handleConfirm() {
-      clearInterval(ticker);
-      showModal('✅', 'Compra confirmada', 'A transação foi liberada e o alerta foi encerrado com segurança.');
-    }
-
-    /* Modal */
-    function showModal(icon, title, msg) {
-      document.getElementById('modalIcon').textContent = icon;
-      document.getElementById('modalTitle').textContent = title;
-      document.getElementById('modalMsg').textContent = msg;
-      document.getElementById('modal').classList.add('open');
-    }
-    function closeModal() {
-      document.getElementById('modal').classList.remove('open');
-    }
-
-    /* Fechar modal com Esc */
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-  </script>
-
+  <script src="script.js"></script>
 </body>
-
 </html>
